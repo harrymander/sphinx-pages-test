@@ -1,0 +1,24 @@
+name: Build and deploy docs
+on:
+  push:
+    branches: [master]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Sphinx docs
+        uses: ammaraskar/sphinx-action@master
+        with:
+          docs-folder: "source/"
+          build-command: "sphinx-build -b html . build"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: docs
+          path: build
+      - name: Publish to GitHub pages
+        uses: JamesIves/github-pages-deploy-action@v4.2.2
+        with:
+          branch: gh-pages
+          folder: build
