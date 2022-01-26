@@ -1,20 +1,15 @@
-.. Sphinx GitHub pages test documentation master file, created by
-   sphinx-quickstart on Wed Jan 26 10:15:38 2022.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to Sphinx GitHub pages test's documentation!
-====================================================
+Sphinx GitHub Pages test
+========================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+This site is a test for hosting Sphinx_ documentation on `GitHub Pages`_.
 
+.. _Sphinx: https://www.sphinx-doc.org
+.. _GitHub Pages: https://pages.github.com
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+The source for these docs including the GitHub workflow to build and deploy
+them to this site can be found on GitHub:
+https://github.com/harrymander/sphinx-pages-test
