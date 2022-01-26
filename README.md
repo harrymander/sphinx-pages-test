@@ -11,8 +11,9 @@ Pages site:
 See [default.yml](./.github/workflows/default.yml) for GitHub workflow
 implementation.
 
-PDFs are also generated (using LaTeX) in the workflow, see the
-[Actions](https://github.com/harrymander/sphinx-pages-test/actions) page.
+PDFs are also generated (using LaTeX) in the workflow on `master`. See the
+[Actions](https://github.com/harrymander/sphinx-pages-test/actions) page to
+download artifacts from each workflow run.
 
 To build locally, run `make html`. Run `make` to print a list of available
 targets.
