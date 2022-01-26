@@ -8,23 +8,33 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Build Sphinx docs in HTML and LaTeX
+      - name: Checkout source
+        uses: actions/checkout@v2
+      - name: Set Sphinx targets to build
+        run: |
+          if [ "${{ github.ref }}" = "refs/heads/master" ]; then
+              echo "SPHINX_TARGETS=html latex" >> $GITHUB_ENV
+          else
+              echo "SPHINX_TARGETS=html" >> $GITHUB_ENV
+          fi
+      - name: Build Sphinx docs
         uses: ammaraskar/sphinx-action@master
         with:
           docs-folder: "."
-          build-command: make html latex
+          build-command: make ${{ env.SPHINX_TARGETS }}
       - name: Upload HTML as artifact
         uses: actions/upload-artifact@v2
         with:
           name: html
           path: build/html
-      - name: Upload LaTeX as artifact
+      - if: ${{ github.ref == 'refs/heads/master' }}
+        name: Upload LaTeX as artifact
         uses: actions/upload-artifact@v2
         with:
           name: latex
           path: build/latex
   build-pdf:
+    if: ${{ github.ref == 'refs/heads/master' }}
     needs: build
     runs-on: ubuntu-latest
     container:
